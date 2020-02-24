@@ -1,4 +1,3 @@
-# Maintainer: Erik Zenker <erikzenker at posteo dot de>
 pkgname=benchmark-git
 pkgver=v1.5.0.r0.g090faec
 pkgrel=1
