@@ -1,20 +1,16 @@
 pkgname=asio
 pkgver=1.12.2
 pkgrel=1
-pkgdesc=""
+pkgdesc="Standalone asio library"
 licence=('Boost')
 arch=('x86_64')
 url="https://github.com/chriskohlhoff/asio"
 depends=(boost boost-libs autoconf)
 
-source=("git://github.com/chriskohlhoff/asio")
+_release_tag=$(echo $pkgver | sed -E "s/\./-/g" | sed -E "s/(.*)/asio-\1/g")
+
+source=("git://github.com/chriskohlhoff/asio#$_release_tag")
 sha256sums=('SKIP')
-
-prepare() {
-  cd "${srcdir}/${pkgname}"
-
-  echo "${pkgver}" | sed -E "s/\./-/g" | sed -E "s/^(.*)/asio-\1/g" | xargs git checkout
-}
 
 build() {
   cd "${srcdir}/${pkgname}/${pkgname}"
