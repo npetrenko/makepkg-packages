@@ -1,0 +1,31 @@
+# Maintainer: Erik Zenker <erikzenker at posteo dot de>
+pkgname=asio
+pkgver=1.12.2
+pkgrel=1
+pkgdesc=""
+licence=('Boost')
+arch=('x86_64')
+url="https://github.com/chriskohlhoff/asio"
+depends=(boost boost-libs autoconf)
+
+source=("git://github.com/chriskohlhoff/asio")
+sha256sums=('SKIP')
+
+prepare() {
+  cd "${srcdir}/${pkgname}"
+
+  echo "${pkgver}" | sed -E "s/\./-/g" | sed -E "s/^(.*)/asio-\1/g" | xargs git checkout
+}
+
+build() {
+  cd "${srcdir}/${pkgname}/${pkgname}"
+
+  autoreconf -i
+  ./configure --without-boost
+  make
+}
+
+package() {
+  cd "${srcdir}/${pkgname}/${pkgname}"
+  make DESTDIR="$pkgdir/" install
+}
