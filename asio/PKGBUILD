@@ -1,4 +1,3 @@
-# Maintainer: Erik Zenker <erikzenker at posteo dot de>
 pkgname=asio
 pkgver=1.12.2
 pkgrel=1
